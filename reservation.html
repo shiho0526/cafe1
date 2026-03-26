@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafe1117 - reservation</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/reservation.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<section id="reservation" class="reservation-section section" data-animate> 
+  <div class="reservation-inner">
+
+    <!-- タイトル -->
+    <header class="reservation-header" data-animate>
+      <h2 class="reservation-title" data-animate>
+        <span class="title-en">RESERVATION / CONTACT</span>
+      </h2>
+    </header>
+
+    <!-- 説明文 -->
+    <p class="reservation-description" data-animate>
+      <span class="pc-only">
+        ご予約に関するお問い合わせや、メニュー・貸切のご相談なども承っております。<br>
+        どうぞお気軽にご連絡ください。
+      </span>
+      <span class="sp-only">
+        ご予約に関するお問い合わせや<br>
+        メニュー・貸切のご相談<br>
+        なども承っております。<br>
+        どうぞお気軽にご連絡ください。
+      </span>
+    </p>
+
+    <!-- タブ切り替え -->
+    <ul class="reservation-tabs" role="tablist" data-animate>
+      <li class="tab active" role="tab" aria-selected="true" aria-controls="form-reservation" data-tab="reservation">予約リクエスト</li>
+      <li class="tab" role="tab" aria-selected="false" aria-controls="form-inquiry" data-tab="inquiry">お問い合わせ</li>
+    </ul>
+
+    <!-- ▼▼ 予約フォーム ▼▼ -->
+    <div class="form-panel active" id="form-reservation" role="tabpanel" data-animate>
+      <form action="mailto:info@example.com" method="post" enctype="text/plain">
+
+        <div class="form-block" data-animate>
+          <label for="res-name">お名前 *</label>
+          <input id="res-name" type="text" name="name" required>
+        </div>
+
+        <div class="form-block" data-animate>
+          <label for="date_input">利用希望日 *</label>
+          <input id="date_input" type="date" name="date" required>
+        </div>
+
+        <div class="form-block" data-animate>
+          <label for="time_start">利用希望時間 *</label>
+          <div class="time-flex">
+            <select name="time_start" id="time_start" required>
+              <option value="">選択してください</option>
+              <option>11:00</option>
+              <option>12:00</option>
+              <option>13:00</option>
+              <option>14:00</option>
+              <option>15:00</option>
+              <option>16:00</option>
+              <option>17:00</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-block" data-animate>
+          <label for="res-people">人数 *</label>
+          <input id="res-people" type="number" name="people" required>
+        </div>
+
+        <div class="form-block" data-animate>
+          <label for="res-email">メールアドレス *</label>
+          <input id="res-email" type="email" name="email" required>
+        </div>
+
+        <div class="form-block" data-animate>
+          <label for="res-tel">電話番号 *</label>
+          <input id="res-tel" type="tel" name="tel" required>
+        </div>
+
+        <div class="form-block" data-animate>
+          <label for="res-message">その他ご質問など</label>
+          <textarea id="res-message" name="message" rows="5"></textarea>
+        </div>
+
+        <div class="agreement-block" data-animate>
+          <label class="agree-item">
+            <input type="checkbox" name="agree_privacy" class="agree-privacy-res">
+            <a href="privacy.html" target="_blank">プライバシーポリシーに同意</a>
+          </label>
+
+          <label class="agree-item">
+            <input type="checkbox" name="agree_terms" class="agree-terms-res">
+            <a href="terms.html" target="_blank">利用規約に同意</a>
+          </label>
+        </div>
+
+        <p class="agree-error" data-animate>※入力必須項目です</p>
+
+        <button type="submit" class="reservation-submit" data-animate>送信する</button>
+      </form>
+    </div>
+
+    <!-- ▼▼ お問い合わせフォーム ▼▼ -->
+    <div class="form-panel" id="form-inquiry" role="tabpanel" data-animate>
+      <form action="mailto:info@example.com" method="post" enctype="text/plain">
+
+        <div class="form-block" data-animate>
+          <label for="inq-name">お名前 *</label>
+          <input id="inq-name" type="text" name="name" required>
+        </div>
+
+        <div class="form-block" data-animate>
+          <label for="inq-email">メールアドレス *</label>
+          <input id="inq-email" type="email" name="email" required>
+        </div>
+
+        <div class="form-block" data-animate>
+          <label for="inq-tel">電話番号 *</label>
+          <input id="inq-tel" type="tel" name="tel" required>
+        </div>
+
+        <div class="form-block" data-animate>
+          <label for="inq-message">お問い合わせ内容 *</label>
+          <textarea id="inq-message" name="message" rows="6" required></textarea>
+        </div>
+
+        <div class="agreement-block" data-animate>
+          <label class="agree-item">
+            <input type="checkbox" name="agree_privacy" class="agree-privacy-inq">
+            <a href="privacy.html" target="_blank">プライバシーポリシーに同意</a>
+          </label>
+
+          <label class="agree-item">
+            <input type="checkbox" name="agree_terms" class="agree-terms-inq">
+            <a href="terms.html" target="_blank">利用規約に同意</a>
+          </label>
+        </div>
+
+        <p class="agree-error" data-animate>※入力必須項目です</p>
+
+        <button type="submit" class="reservation-submit" data-animate>送信する</button>
+      </form>
+    </div>
+
+  </div><!-- /.reservation-inner -->
+</section>
+
+<script src="js/common.js" defer></script>
+<script src="js/reservation.js" defer></script>
+
+</body>
+</html>
