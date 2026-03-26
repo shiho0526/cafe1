@@ -1,0 +1,210 @@
+/* ==================================================
+   Global CSS Variables（予約セクションと統一）
+================================================== */
+:root {
+  /* フォント */
+  --font-heading-family: "Playwrite NO", serif; /* 見出し */
+  --font-heading-weight: 400;
+  --font-body-family: "Noto Sans JP", sans-serif; /* 本文 */
+  --font-body-weight: 400;
+
+  /* フォントサイズ */
+  --font-xxl: 3.2rem; /* h1相当 */
+  --font-xl: 2.8rem;  /* h2相当 */
+  --font-lg: 2.2rem;  /* h3相当 */
+  --font-md: 1.2rem;
+  --font-base: 1rem;
+  --font-sm: 0.9rem;
+
+  /* 行間 */
+  --lh-tight: 1.2;
+  --lh-normal: 1.6;
+  --lh-loose: 1.8;
+
+  /* シャドウ / 幅 */
+  --shadow-card: 0 6px 18px rgba(0,0,0,0.05);
+  --content-max-width: 1000px;
+
+  /* 色 */
+  --color-text-invert: #fff;
+  --card-bg: rgba(255,255,255,0.9); /* 少し透明な白 */
+}
+
+/* ============================
+   BASE
+============================ */
+body{
+  margin:0;
+  background:#000;
+  color: var(--color-text-invert);
+  font-family: var(--font-body-family);
+  font-weight: var(--font-body-weight);
+  overflow-x:hidden;
+}
+
+/* ============================
+   HEADER
+============================ */
+.header{
+  position:absolute;
+  top:20px;
+  left:20px;
+  z-index:10;
+}
+
+.logo {
+  width:150px;
+  display:block;
+  filter: brightness(0) invert(1);
+}
+
+/* ============================
+   CONTAINER
+============================ */
+.policy-container{
+  max-width: var(--content-max-width);
+  margin:140px auto 100px;
+  padding:0 20px;
+  text-align:center;
+}
+
+/* ============================
+   TITLES
+============================ */
+.policy-en-title{
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--font-xl); /* タイトルサイズそのまま */
+  letter-spacing: 0.05em;
+  margin-bottom:10px;
+  color: var(--color-text-invert);
+}
+
+.policy-title{
+  font-family: var(--font-body-family);
+  font-weight: var(--font-body-weight);
+  font-size: var(--font-base);
+  line-height: var(--lh-loose); 
+  margin-bottom:30px;
+  color: var(--color-text-invert);
+}
+
+/* ============================
+   INTRO TEXT
+============================ */
+.policy-intro{
+  font-family: var(--font-body-family);
+  font-weight: var(--font-body-weight);
+  font-size: var(--font-base);
+  line-height: var(--lh-loose);
+  margin-bottom:50px;
+  text-align:center;
+  padding:0 60px;
+  box-sizing:border-box;
+}
+
+/* PC/SP 切替 */
+.pc-only { display:block; }
+.sp-only { display:none; }
+
+/* ============================
+   POLICY CARD
+============================ */
+.policy-card{
+  background: #fff;
+  padding:26px;
+  border-radius:10px;
+  margin-bottom:26px;
+  box-shadow: var(--shadow-card);
+  text-align:left;
+  font-family: var(--font-body-family);
+  font-weight: var(--font-body-weight);
+  font-size: var(--font-base);
+  line-height: var(--lh-normal);
+}
+
+.policy-card h3{
+  font-family: var(--font-body-family); /* ← 追加 */
+  font-size: var(--font-base);
+  font-weight: 600;
+  margin-bottom:10px;
+  line-height: var(--lh-normal); /* 安定のため追加しておく */
+}
+
+.policy-card p{
+  font-size: var(--font-base);
+  line-height: var(--lh-normal);
+  color: #000;
+}
+
+.policy-list{
+  margin:0;
+  padding-left:18px;
+  line-height: var(--lh-normal);
+  font-size: var(--font-base);
+}
+
+.policy-list li{
+  color: #000;
+  margin-bottom:6px;
+}
+
+/* PC版イントロ */
+.policy-intro.pc-only {
+  max-width: 800px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+  font-family: var(--font-body-family);
+  font-weight: var(--font-body-weight);
+  font-size: var(--font-base);
+  line-height: var(--lh-loose);
+  text-align: center;
+  box-sizing:border-box;
+}
+
+/* ============================
+   SP STYLE
+============================ */
+@media screen and (max-width: 767px) {
+
+  .pc-only { display:none; }
+  .sp-only { display:block; }
+
+  .policy-intro{
+    padding:0 20px;
+    margin-bottom:40px;
+    font-size: var(--font-base);
+  }
+
+  .header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .logo{
+    width:80px;
+  }
+
+  .policy-en-title{
+    font-size: var(--font-lg); /* スマホも予約セクションに統一 */
+  }
+
+  .policy-container{
+    margin:120px auto 80px;
+  }
+}
+
+/* ============================
+   FADE IN ANIMATION
+============================ */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

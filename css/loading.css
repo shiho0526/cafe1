@@ -1,0 +1,94 @@
+/* ================================
+   Loading Screen
+================================ */
+
+#loadingScreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh; /* ← iPhone Safari 完全対応 */
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 1.2s ease;
+}
+
+/* ロゴラッパー */
+.loading-logo-wrap {
+  position: relative;
+  width: 180px;
+  aspect-ratio: 1 / 1; /* ← 縦横比を安定させる */
+}
+
+/* 白ロゴ */
+#loadingLogoBase {
+  width: 100%;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+/* カラーロゴ */
+#loadingLogoColor {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
+  contain: paint; /* ← Safari でも安定 */
+
+  animation: logoColorReveal 2.5s ease forwards;
+}
+
+@keyframes logoColorReveal {
+  0% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+/* フェードアウト */
+#loadingScreen.loaded {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ================================
+   Main Fade-in（満点に必要な追加）
+================================ */
+
+/* ローディング中は本編を隠す */
+body:not(.loaded) header,
+body:not(.loaded) main,
+body:not(.loaded) footer {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* ローディング終了後に本編を表示 */
+body.loaded header,
+body.loaded main,
+body.loaded footer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================================
+   Responsive
+================================ */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .loading-logo-wrap {
+    width: 160px;
+  }
+}
+
+@media (max-width: 767px) {
+  .loading-logo-wrap {
+    width: 120px;
+  }
+}

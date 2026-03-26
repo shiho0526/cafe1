@@ -1,0 +1,210 @@
+/* ==============================================
+   MENU セクション（base.css / layout.css統一版）
+============================================== */
+
+.menu-section {
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  padding-top: 0;
+  padding-bottom: 8rem; /* ABOUT と揃える */
+}
+
+/* 見出し */
+.menu-section .section-title {
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--font-xl);
+  margin-bottom: 48px;
+  color: var(--color-text-invert);
+  text-align: center;
+  letter-spacing: 0.1em;
+  line-height: var(--lh-tight);
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.menu-section.active .section-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* メニューリンク横並び */
+.menu-links {
+  display: flex;
+  width: 100%;
+  max-width: var(--content-max-width);
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.menu-link {
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.menu-section.active .menu-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* メニューブロック */
+.menu-block {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.45s cubic-bezier(.25,.46,.45,.94);
+}
+
+.menu-block:hover {
+  transform: scale(1.015);
+}
+
+/* オーバーレイ */
+.menu-block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255,255,255,0);
+  backdrop-filter: blur(0px);
+  transition: background-color 0.45s ease, backdrop-filter 0.45s ease;
+  z-index: 1;
+}
+
+.menu-block:hover::after {
+  background-color: rgba(255,255,255,0.18);
+  backdrop-filter: blur(2px);
+}
+
+/* 中央テキスト */
+.menu-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.menu-label {
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--font-lg);
+  color: var(--color-text-invert);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+.menu-subtext {
+  position: relative;
+  font-size: var(--font-md);
+  color: var(--color-text-invert);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.menu-subtext::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: var(--color-text-invert);
+}
+
+/* waveText */
+.wave-wrapper { display: inline-block; }
+.wave-char { display: inline-block; animation: none; }
+.menu-block:hover .wave-char { animation: wave-char 1s ease-in-out infinite; }
+
+@keyframes wave-char {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* 背景画像 */
+.menu-block[data-bg="breakfast"] { background-image: url("../img/breakfast-menu.webp"); }
+.menu-block[data-bg="lunch"]     { background-image: url("../img/lunch-menu.webp"); }
+.menu-block[data-bg="dinner"]    { background-image: url("../img/dinner-menu.webp"); }
+
+/* ==============================================
+   レスポンシブ
+============================================== */
+
+/* Tablet */
+@media (min-width:768px) and (max-width:1024px) {
+  .menu-section { 
+    padding-top: 0;
+    padding-bottom: 5rem; 
+  }
+
+  .menu-link {
+    display: flex;          /* ← これが中央揃えの決定打 */
+    justify-content: center;
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .menu-links { 
+    flex-direction: column; 
+    gap: 3rem; 
+    align-items: center; /* ← これが中央揃えの決定打 */
+  }
+
+  .menu-label { font-size: calc(var(--font-lg) * 1.15); }
+  .menu-subtext { font-size: calc(var(--font-md) * 1.05); }
+
+  .menu-block { padding: 1.5rem; }
+}
+
+/* Mobile */
+@media (max-width:767px) {
+  .menu-section { 
+    padding-top: 0;
+    padding-bottom: 4rem; 
+  }
+
+  .menu-link {
+    display: flex;          /* ← これが中央揃えの決定打 */
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .menu-links { 
+    flex-direction: column; 
+    gap: 2.4rem; 
+    align-items: center; /* ← これが中央揃えの決定打 */
+  }
+
+  .menu-block { 
+  aspect-ratio: 2.7 / 4;
+  padding: 1.2rem; }
+
+  .menu-label { font-size: var(--font-lg); }
+  .menu-subtext { font-size: var(--font-md); }
+
+  .section-title {
+    font-size: var(--font-lg); 
+    margin-bottom: 2rem;
+  }
+}

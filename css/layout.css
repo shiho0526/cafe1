@@ -1,0 +1,21 @@
+/* PC */
+.section {
+  padding-top: var(--section-padding-pc);
+  padding-bottom: var(--section-padding-pc);
+}
+
+/* タブレット */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .section {
+    padding-top: var(--section-padding-tab);
+    padding-bottom: var(--section-padding-tab);
+  }
+}
+
+/* スマホ */
+@media (max-width: 767px) {
+  .section {
+    padding-top: var(--section-padding-sp);
+    padding-bottom: var(--section-padding-sp);
+  }
+}

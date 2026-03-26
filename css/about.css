@@ -1,0 +1,236 @@
+/* ==============================================
+   ABOUT セクション
+============================================== */
+
+#cafe1117 {
+  overflow: visible;
+  margin: 0;
+  background: #000;
+  color: #fff;
+  padding-top: 12rem;
+  padding-bottom: 8rem;
+}
+
+#cafe1117 .container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+}
+
+#cafe1117 .flex-content {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* カラム */
+#cafe1117 .about-content {
+  order: 0;
+  width: 50%;
+  padding: 4rem 6vw;
+  box-sizing: border-box;
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+#cafe1117 .about-content.fade-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 見出し */
+#cafe1117 .about-content h2 {
+  color: #fff;
+  font-size: var(--font-xl);
+  margin-bottom: 48px;
+}
+
+/* テキスト */
+#cafe1117 .about-content p {
+  margin-bottom: 1.6rem;
+  line-height: var(--lh-loose);
+  color: #fff;
+  font-size: var(--font-base);
+}
+
+#cafe1117 .about-content p + p {
+  margin-top: 2rem;
+}
+
+/* Slider */
+#cafe1117 .slider-section {
+  position: sticky;
+  top: 0;
+  width: 50%;
+  height: 100vh;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+#cafe1117 #aboutSlider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+}
+
+#cafe1117 #aboutSlider li {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+#cafe1117 #aboutSlider li:first-child {
+  opacity: 1;
+}
+
+#cafe1117 .slider-section img {
+  width: 92%;
+  height: 92%;
+  object-fit: cover;
+  margin: auto;
+  display: block;
+}
+
+/*==============================================
+Tablet
+==============================================*/
+
+@media (min-width:768px) and (max-width:1024px){
+
+#cafe1117 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+#cafe1117 .flex-content{
+
+flex-direction:column;
+
+}
+
+#cafe1117 .about-content{
+
+order:0;
+width:100%;
+
+padding:4rem 3rem;
+
+}
+
+#cafe1117 .slider-section{
+
+order:1;
+
+position:relative;
+
+width:100%;
+height:min(70vh,600px);
+
+overflow:hidden;
+
+background:#000;
+
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 0;
+
+}
+
+  #cafe1117 .slider-section img {
+    width: 100%;
+    max-width: calc(100% - 2.5rem); /* スマホと同じ左右余白 */
+    height: 110%;                   /* ★ 高さを少し広げる */
+    object-fit: cover;              /* 自然にトリミング */
+    margin: 0 auto;
+    display: block;
+  }
+
+}
+
+/*==============================================
+Mobile
+==============================================*/
+
+@media (max-width:767px){
+
+#cafe1117{
+  overflow-x:hidden;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+#cafe1117 .flex-content{
+  flex-direction:column;
+}
+
+#cafe1117 .about-content{
+  order:0;
+  width:100%;
+  padding:3rem 1.5rem;
+}
+
+#cafe1117 .slider-section{
+  order:1;
+  position:relative;
+  width:100%;
+  height:clamp(220px,38vh,320px);   /* ← ★ 高さ固定のままが正解 */
+  overflow:hidden;
+  background:#000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+/* スライダー本体 */
+#cafe1117 #aboutSlider{
+  position:relative;
+  width:100%;
+  height:100%;                        /* ← ★ 親の高さに合わせる */
+}
+
+/* li（スライド） */
+#cafe1117 #aboutSlider li{
+  position:absolute;                  /* ← スライダー維持 */
+  inset:0;                            /* ← 親の高さにフィット */
+  opacity:0;
+  transition:opacity .8s ease;
+}
+
+#cafe1117 #aboutSlider li:first-child{
+  opacity:1;
+}
+
+/* 画像 */
+#cafe1117 .slider-section img{
+    width: 100%;
+    max-width: calc(100% - 2.5rem); /* ← 左右1.25remずつ余白 */
+    height: 110%;                   /* ← ★ 高さを少し広げる */
+    object-fit: cover;              /* ← ★ 自然にトリミング */
+    margin: 0 auto;
+    display: block;
+  }
+
+/* 見出し */
+#cafe1117 .about-content h2{
+  font-size: calc(var(--font-lg) * 1.2);
+  text-align:left;
+}
+
+/* テキスト */
+#cafe1117 .about-content p{
+  font-size:var(--font-base);
+  line-height:var(--lh-loose);
+}
+
+}
+
+
+

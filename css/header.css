@@ -1,0 +1,585 @@
+/* 全体レイアウト */
+.split-header {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+/* 左右 50% */
+.split-left,
+.split-right {
+  width: 50%;
+  height: 100%;
+}
+
+.split-left {
+  background: #000;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 0;
+}
+
+/* ============================
+   タイトル（Playfair Display）
+   ============================ */
+.main-title {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transform: translateX(38%);
+  color: #fff;
+  white-space: nowrap;
+  z-index: 1500;
+  font-family: "Playfair Display", serif;
+  line-height: 1;
+}
+
+/* タイトル本体（アニメ削除＋常時光る） */
+.title-main,
+.title-sub {
+  position: relative;
+  font-size: 130px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  transform: scaleY(0.88);
+  transform-origin: left center;
+  color: #fff;
+  opacity: 1;
+
+
+  /* ← 常時光る上品なエフェクト */
+  text-shadow:
+    0 0 8px rgba(255,255,255,0.35),
+    0 0 16px rgba(255,255,255,0.25);
+}
+
+/* メイン・サブ共通：動き用の枠 */
+.title-main,
+.title-sub {
+  display: inline-block;
+  overflow: hidden; /* ← 上下の動きを枠内に収める */
+}
+
+/* 内側の文字に動きを付ける */
+.title-main span,
+.title-sub span {
+  display: inline-block;
+  animation: essenceSync 12s infinite;
+  transform-origin: center;
+}
+
+/* 内側の文字に動きを付ける */
+.title-main span,
+.title-sub span {
+  display: inline-block;
+  animation: essenceAll 12s infinite;
+  transform-origin: center;
+}
+
+@keyframes essenceAll {
+  /* 1枚目（0〜4秒） */
+  0%   { opacity: 0; transform: translateY(45%); }
+  8%   { opacity: 1; transform: translateY(0); }
+  25%  { opacity: 1; transform: translateY(0); }
+  33%  { opacity: 0; transform: translateY(-45%); }
+
+  /* 2枚目（4〜8秒） */
+  38%  { opacity: 0; transform: translateY(45%); }
+  45%  { opacity: 1; transform: translateY(0); }
+  58%  { opacity: 1; transform: translateY(0); }
+  66%  { opacity: 0; transform: translateY(-45%); }
+
+  /* 3枚目（8〜12秒） */
+  72%  { opacity: 0; transform: translateY(45%); }
+  80%  { opacity: 1; transform: translateY(0); }
+  91%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-45%); }
+}
+
+/* 行間 */
+.title-sub {
+  margin-top: 30px;
+}
+
+/* ← softType アニメーションは不要なので削除してOK
+   （残しても動かないが、コードを軽くしたいなら消す）
+*/
+
+/* 右側：スライダー */
+.split-right {
+  position: relative;
+  background: #111;
+}
+
+.slider img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  animation: slideShow 12s infinite;
+}
+
+.slider img:nth-child(1) { animation-delay: -0.3s; }
+.slider img:nth-child(2) { animation-delay: -4s; }
+.slider img:nth-child(3) { animation-delay: -8s; }
+
+@keyframes slideShow {
+  0%   { opacity: 1; }
+  30%  { opacity: 1; }
+  33%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* 中央上ロゴ（ヘッダー内だけで表示） */
+.center-logo {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+}
+
+.center-logo img {
+  height: 140px; /* ← 大きくした */
+  filter: brightness(0) invert(1);
+}
+
+/* 左上ナビ（PCのみ） */
+.header-nav {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  display: flex;
+  gap: 28px;
+  z-index: 2000;
+}
+
+.header-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  transition: 0.3s ease;
+  z-index: 3000;
+}
+
+.header-nav a:hover {
+  text-shadow: 
+    0 0 6px rgba(255,255,255,0.8),
+    0 0 12px rgba(255,255,255,0.6);
+  transform: translateY(-2px);
+}
+
+/* 右上（スマホ用） */
+.header-right {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 2000;
+}
+
+.reserve-btn {
+  margin-top: 40px;
+  padding: 10px 32px;
+  border: 2px solid #fff;
+  border-radius: 40px;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  transition: 
+    color 0.3s ease,
+    transform 0.3s ease;
+
+  animation: none; /* ← 追加 */
+}
+
+/* 下から白く塗りつぶす */
+.reserve-btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0%;
+  background: #fff;
+  z-index: -1;
+  transition: height 0.35s ease;
+}
+
+/* ホバー時：白塗り＋文字黒＋少し上に動く */
+.reserve-btn:hover {
+  color: #000;
+  transform: translateY(-3px); /* ← ナビと同じ“ふわっと上がる” */
+}
+
+.reserve-btn:hover::before {
+  height: 100%;
+}
+
+/* ハンバーガー（PCでは非表示） */
+.hamburger {
+  width: 28px;
+  height: 22px;
+  cursor: pointer;
+  display: none;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: #fff;
+  margin-bottom: 5px;
+  border-radius: 2px;
+}
+
+/* SNS 全体を横並びに */
+.sns-wrap {
+  display: flex;
+  align-items: center;
+  gap: 22px; /* ← Follow Us と → の間もゆったり */
+}
+
+/* Follow Us の文字 */
+.sns-label {
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: #fff;
+  opacity: 0.85;
+}
+
+/* → のスタイル */
+.sns-arrow {
+  font-size: 18px;
+  color: #fff;
+  opacity: 0.85;
+  margin-left: 8px;   /* ← Follow Us と → の間をさらにゆったり */
+  margin-right: 14px; /* ← → とアイコンの間もゆったり */
+}
+
+/* SNS アイコンを横並びに */
+.sns-icons {
+  display: flex;
+  gap: 22px; /* ← ★ここを広げるとアイコン同士がゆったり ★ */
+}
+
+/* SNS アイコンの基本 */
+.sns-icon i {
+  font-size: 24px;
+  color: #fff;
+  transition: 0.3s ease;
+}
+
+/* ホバー時：ナビと同じ光＋浮き上がり */
+.sns-icon:hover i {
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.8),
+    0 0 12px rgba(255,255,255,0.6);
+  transform: translateY(-2px);
+}
+
+/* モバイルナビはPCでは非表示 */
+.mobile-nav{
+  display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  /* 左側の黒背景を消す（スマホと同じ） */
+  .split-left {
+    background: none;
+    width: 0;
+    padding: 0;
+  }
+
+  /* 右側スライドを全画面に（スマホと同じ） */
+  .split-right {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+
+  .main-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+  /* タイトルサイズ：スマホより大きく、PCより小さく */
+  .title-main {
+    font-size: 88px;
+    transform: scaleY(0.9);
+  }
+
+  .title-sub {
+    font-size: 45px;
+    margin-top: 16px;
+  }
+
+  /* 予約ボタンもタブレット用に調整 */
+  .reserve-btn {
+    margin-top: 36px;
+    padding: 10px 30px;
+    font-size: 18px;
+  }
+
+  /* PC ナビは非表示（スマホと同じ構造にするため） */
+  .header-nav {
+    display: none;
+  }
+
+  /* ロゴも非表示（スマホと同じ） */
+  .center-logo {
+    display: none;
+  }
+
+  /* SNS はスマホと同じ右上固定 */
+  .header-right {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 5000;
+  }
+
+  /* ハンバーガーもスマホと同じ */
+  .hamburger {
+    display: block;
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 5000;
+    transition: transform 0.4s ease;
+  }
+
+  /* モバイルナビもスマホと同じ */
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.88);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-100%);
+    transition: transform 0.45s ease, opacity 0.45s ease;
+    z-index: 3500;
+  }
+
+  .mobile-nav.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+
+  /* ナビ文字（スマホと同じフォント） */
+  .mobile-nav a {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: 30px;     /* ← スマホより少し大きく */
+    letter-spacing: 0.08em;
+    color: #fff;
+    text-decoration: none;
+    margin: 14px 0;
+    opacity: 0.9;
+    transition: 0.3s ease;
+  }
+
+  .mobile-nav a:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    text-shadow:
+      0 0 6px rgba(255,255,255,0.8),
+      0 0 12px rgba(255,255,255,0.6);
+  }
+}
+
+@media (max-width: 767px) {
+
+  /* ============================
+     レイアウト調整
+     ============================ */
+
+  .split-left {
+    background: none;
+    width: 0;
+    padding: 0;
+  }
+
+  .split-right {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+
+  /* ============================
+     タイトル配置（左寄せ）
+     ============================ */
+
+  .main-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+  .title-main {
+    font-size: 65px;     /* ← スマホ最適サイズ */
+    transform: scaleY(0.9);
+  }
+
+  .title-sub {
+    font-size: 37px;
+    margin-top: 12px;
+  }
+
+  .reserve-btn {
+    margin: 32px auto 0 auto;
+    padding: 8px 26px;
+    font-size: 16px;
+    display: inline-block;
+  }
+
+  /* ============================
+     PC ナビ・ロゴ非表示
+     ============================ */
+
+  .header-nav {
+    display: none;
+  }
+
+  .center-logo {
+    display: none;
+  }
+
+  /* ============================
+     SNS（アイコンのみ表示）
+     ============================ */
+
+  .sns-label,
+  .sns-arrow {
+    display: none;
+  }
+
+  .sns-icons {
+    display: flex;
+    gap: 20px;
+  }
+
+  /* SNS を右上に固定（最前面） */
+  .header-right {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 5000;   /* ← メニューより前面 */
+  }
+
+  /* ============================
+     ハンバーガー
+     ============================ */
+
+  .hamburger {
+    display: block;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 5000;   /* ← SNS と同じ最前面 */
+    transition: transform 0.4s ease;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .hamburger.active { 
+    transform: rotate(180deg); /* ← くるっと回転 */ 
+  }
+
+  /* ============================
+     モバイルナビ（開閉）
+     ============================ */
+
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0,0,0,0.88);
+  backdrop-filter: blur(6px);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transform: translateX(-100%);     /* ← 左画面外に隠す */
+  transition: transform 0.45s ease, opacity 0.45s ease;
+  z-index: 3500;
+}
+
+.mobile-nav.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);         /* ← 右へスライドイン */
+}
+
+  /* スマホメニューのナビ文字を Reservation と同じ雰囲気に */
+.mobile-nav a {
+  font-family: "Playfair Display", serif;  /* ← これが一番重要 */
+  font-weight: 400;                        /* ← Reservation と同じ細さ */
+  font-size: 26px;                         /* ← スマホでは少し大きめが美しい */
+  letter-spacing: 0.08em;                  /* ← Reservation と同じ字間 */
+  color: #fff;
+  text-decoration: none;
+  margin: 12px 0;
+  opacity: 0.9;
+  transition: 0.3s ease;
+}
+
+.mobile-nav a:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.8),
+    0 0 12px rgba(255,255,255,0.6);
+}
+}
+
+
+
+

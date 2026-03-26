@@ -1,0 +1,428 @@
+/* ==============================================
+   CONTACT / INFO SECTION（ブランド統一版 完全版）
+============================================== */
+
+/* 共通セクション設定 */
+.contact-header-section,
+.contact-info-section {
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+  background-color: #000;
+  color: var(--color-text-invert);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding: 0 2rem 6rem 0;
+}
+
+/* 見出し・本文共通 */
+.contact-header-section h2,
+.contact-info-section h2 {
+  color: var(--color-text-invert);
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  margin: 0;
+}
+
+.contact-header-section p,
+.contact-info-section p,
+.contact-info-text {
+  color: var(--color-text-invert);
+  font-family: var(--font-body-family);
+  font-weight: var(--font-body-weight);
+  margin: 0;
+  font-size: var(--font-base);
+  line-height: var(--lh-normal);
+  text-align: left;
+}
+
+/* ================================
+   CONTACT HEADER
+================================ */
+.contact-header-section {
+  gap: 180px;
+}
+
+.contact-header-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1.2rem;
+  padding-left: 1rem;
+  box-sizing: border-box;
+}
+
+.contact-header-left h2 {
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+}
+
+.contact-header-right {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.contact-header-right img {
+  width: 50vw;
+  display: block;
+  transform: translateX(-130%) scale(1.05) rotate(0.6deg);
+  opacity: 0;
+  mask-position: 70% 50%;
+  transition: transform 2.4s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 2.4s ease,
+              mask-position 2.4s ease;
+  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  mask-size: 120% 120%;
+}
+
+.contact-header-section.active .contact-header-right img {
+  transform: translateX(0) scale(1) rotate(0deg);
+  opacity: 1;
+  mask-position: 50% 50%;
+}
+
+/* ================================
+   CONTACT LINKS
+================================ */
+.contact-link a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--color-text-invert);
+  text-decoration: none;
+  font-size: var(--font-base);
+  line-height: var(--lh-normal);
+  font-weight: 500;
+  padding-bottom: 6px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.contact-link a::before,
+.contact-link a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: var(--color-text-invert);
+}
+
+.contact-link a::before {
+  width: 100%;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.contact-link a::after {
+  width: 0%;
+  transition: width 0.35s ease;
+}
+
+.contact-link a:hover::before { opacity: 0; }
+.contact-link a:hover::after { width: 100%; }
+
+.contact-link a .arrow {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  display: inline-block;
+  transition: transform 0.35s ease;
+  transform-origin: left center;
+}
+
+.contact-link a:hover .arrow { transform: translateX(10px); }
+
+/* ================================
+   CONTACT INFO
+================================ */
+.contact-info-section {
+  flex-direction: row-reverse;
+}
+
+.contact-info-left,
+.contact-header-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1.2rem;
+  box-sizing: border-box;
+}
+
+.contact-info-left {
+  padding: 0 2rem;
+}
+
+.contact-info-right {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.contact-info-right img {
+  width: 50vw;
+  display: block;
+  transform: translateX(130%) scale(1.05) rotate(-0.6deg);
+  opacity: 0;
+  mask-position: 70% 50%;
+  transition: transform 2.4s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 2.4s ease,
+              mask-position 2.4s ease;
+  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  mask-size: 120% 120%;
+}
+
+.contact-info-section.active .contact-info-right img {
+  transform: translateX(0) scale(1) rotate(0deg);
+  opacity: 1;
+  mask-position: 50% 50%;
+}
+
+/* ================================
+   CONTACT INFO テキスト
+================================ */
+.contact-info-text {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  opacity: 0;
+  transform: translateY(-40px);
+  transition: opacity 1s ease, transform 1s ease;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+.contact-info-section.active .contact-info-text {
+  opacity: 1;
+  transform: translateY(-60px);
+  transition-delay: 0.6s;
+}
+
+/* ================================
+   フェードイン共通
+================================ */
+.contact-header-left h2,
+.contact-header-left p,
+.contact-info-left h2,
+.contact-info-left p,
+.contact-link a {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.contact-header-section.active .contact-header-left h2,
+.contact-info-section.active .contact-info-left h2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.contact-header-section.active .contact-header-left p,
+.contact-info-section.active .contact-info-left p {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.45s;
+}
+
+.contact-header-section.active .contact-link a {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.6s;
+}
+
+/* ==============================================
+   Tablet（768px〜1024px）
+============================================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  .pc-only { display: none; }
+
+  .tablet-only { 
+  display: inline-block;
+  white-space: nowrap;       /* 文章を改行させない */
+  overflow: hidden;          /* はみ出した場合は隠す */
+  text-overflow: ellipsis;   /* 必要なら … 表示 */
+  font-size: clamp(1rem, 1.5vw, 1.2rem); /* 画面幅に応じて自動縮小 */
+}
+
+  .sp-only { display: none; }
+
+  .contact-header-section,
+  .contact-info-section {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding-top: 0;    /* 上余白ゼロ */
+    padding-right: 2rem;
+    padding-bottom: 5rem;
+    padding-left: 2rem;
+    gap: 2rem;
+  }
+
+  .contact-header-left,
+  .contact-info-left,
+  .contact-header-right,
+  .contact-info-right {
+    width: 50%;
+  }
+
+  .contact-header-left,
+  .contact-info-left {
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .contact-header-right,
+  .contact-info-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contact-header-right img,
+  .contact-info-right img { width: 100%; max-width: 100%; transform: none; }
+}
+
+/* ==============================================
+   PC（1025px以上）
+============================================= */
+@media (min-width: 1025px) {
+  .pc-only { display: inline-block; }
+  .sp-only { display: none; }
+  .tablet-only { display: none; }
+
+  .contact-header-section,
+  .contact-info-section {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding-top: 0;    /* 上余白をゼロに */
+    padding-right: 2rem;
+    padding-bottom: 8rem; /* 下余白は元のまま */
+    padding-left: 2rem;
+    gap: 2rem;
+  }
+
+  .contact-header-left,
+  .contact-info-left {
+    width: 44%;
+    justify-content: center;
+    text-align: left;        /* ★ 左揃えに変更 */
+    align-items: flex-start; /* ★ テキストの左端を揃える */
+    gap: 2rem;
+    margin: 0 auto;          /* ★ ブロック自体は中央に配置 */
+  }
+
+  .contact-header-right,
+  .contact-info-right {
+    width: 48%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contact-header-right img,
+  .contact-info-right img { width: 100%; max-width: 100%; transform: none; }
+}
+
+/* ==============================================
+   SP（767px以下）
+============================================= */
+@media (max-width: 767px) {
+  .pc-only { display: none; }
+  .sp-only { display: inline-block; }
+  .tablet-only { display: none; }
+
+  .contact-header-section,
+  .contact-info-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 0 6.25% 4rem 6.25%;
+  }
+
+  .contact-info-section { padding-bottom: 80px; }
+
+  .contact-header-left,
+  .contact-info-left { order: 1; width: 100%; gap: 0; align-items: center; padding: 0 0rem; }
+  .contact-header-right,
+  .contact-info-right { order: 2; width: 100%; display: flex; justify-content: center; }
+
+  .contact-header-left h2,
+  .contact-info-left h2 {
+    font-size: var(--font-lg);
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .contact-info-text,
+  .contact-header-left p,
+  .contact-link a {
+    font-size: var(--font-base);
+    line-height: var(--lh-normal);
+    text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .contact-link a { justify-content: center; padding-bottom: 6px; }
+
+  .contact-header-right img,
+  .contact-info-right img {
+    width: 87.5vw;
+    max-width: 87.5vw;
+    opacity: 0;
+    transform: translateX(0) scale(1.05);
+    margin: 0 auto;
+    display: block;
+    transition: all 2s cubic-bezier(0.22,1,0.36,1);
+    mask-position: 50% 50%;
+  }
+
+  .contact-header-section.active .contact-header-right img,
+  .contact-info-section.active .contact-info-right img {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ==============================================
+   ★ 動きだけ統一するための修正パッチ（PC / Tablet / SP）
+   ※ デザインは一切変更しない
+============================================== */
+
+/* --- PC / Tablet の transform: none を無効化 --- */
+@media (min-width: 768px) {
+  .contact-header-right img,
+  .contact-info-right img {
+    transform: translateX(var(--img-start-x)) scale(1.05) rotate(var(--img-start-rot));
+  }
+}
+
+/* --- SP も PC と同じ動きに統一 --- */
+@media (max-width: 767px) {
+  .contact-header-right img {
+    transform: translateX(-130%) scale(1.05) rotate(0.6deg);
+  }
+  .contact-info-right img {
+    transform: translateX(130%) scale(1.05) rotate(-0.6deg);
+  }
+}
+
+/* --- 共通：初期値を変数化（上書きしやすくする） --- */
+.contact-header-right img {
+  --img-start-x: -130%;
+  --img-start-rot: 0.6deg;
+}
+
+.contact-info-right img {
+  --img-start-x: 130%;
+  --img-start-rot: -0.6deg;
+}

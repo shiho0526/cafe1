@@ -1,0 +1,173 @@
+/* ==============================================
+   NEWS セクション（完全版：幅修正＋フェードイン統一）
+============================================== */
+.news-section {
+  padding-top: 0;          /* ← 追加：上余白なし */
+  padding-bottom: 8rem;
+  background: #000;
+  color: #fff;
+
+  width: 100%;        /* 横幅いっぱい */
+  max-width: 100vw;   /* はみ出し防止 */
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.news-inner {
+  width: min(100%, var(--content-max-width));
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* 見出し */
+.news-section .section-title {
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--font-xl);
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.05em;
+  margin-bottom: 3.5rem;
+  line-height: var(--lh-tight);
+
+  opacity: 1;          /* 初期から見える */
+  transform: translateY(0); /* 初期から位置を固定 */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.news-section.active .section-title {
+  opacity: 1;          /* フェード後 */
+  transform: translateY(0);
+}
+
+/* 一覧 */
+.news-list {
+  width: 100%;
+  border-top: 1px solid #fff;
+}
+
+/* 記事 */
+.news-item {
+  padding: 1.6rem 0; /* PC 縦余白最適化 */
+  border-bottom: 1px solid #fff;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
+}
+
+.news-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 日付 */
+.news-date {
+  display: inline-block;
+  font-size: var(--font-sm);
+  color: #fff;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-body-family);
+  font-weight: var(--font-body-weight);
+}
+
+/* タイトル */
+.news-title {
+  font-size: var(--font-md);
+  color: #fff;
+  margin: 0 0 0.4rem;
+  line-height: var(--lh-normal);
+  font-family: var(--font-body-family);
+  font-weight: var(--font-heading-weight);
+}
+
+/* 本文 */
+.news-text {
+  font-size: var(--font-base);
+  color: #fff;
+  line-height: var(--lh-normal);
+  margin: 0;
+  font-family: var(--font-body-family);
+  font-weight: var(--font-body-weight);
+}
+
+/* ==============================================
+   タブレット
+============================================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .news-section {
+    padding-bottom: 5rem;
+  }
+
+  .news-section .section-title {
+    font-size: var(--font-xl);
+    margin-bottom: 2rem;
+  }
+
+  .news-inner {
+    width: min(100%, 90%);
+  }
+
+  .news-item {
+    padding: 1.4rem 0;
+  }
+
+  .news-title {
+    font-size: var(--font-md);
+  }
+
+  .news-text {
+    font-size: var(--font-base);
+    line-height: var(--lh-normal);
+  }
+}
+
+/* ==============================================
+   スマホ
+============================================== */
+@media (max-width: 767px) {
+  .news-section {
+    padding-bottom: 4rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .news-section .section-title {
+    font-size: var(--font-lg);
+    margin-bottom: 2rem;
+  }
+
+  .news-inner {
+    width: 100%;
+  }
+
+  .news-item {
+    padding: 1.2rem 0;
+  }
+
+  .news-date {
+    font-size: var(--font-sm);
+  }
+
+  .news-title {
+    font-size: var(--font-base);
+  }
+
+  .news-text {
+    font-size: var(--font-sm);
+    line-height: var(--lh-normal);
+  }
+}
+
+/* ==============================================
+   モーション軽減設定
+============================================== */
+@media (prefers-reduced-motion: reduce) {
+  .news-item,
+  .news-section .section-title {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
